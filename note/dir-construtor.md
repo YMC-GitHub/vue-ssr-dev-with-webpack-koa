@@ -25,6 +25,7 @@
 | |--webpack.ssr-client.config.js #a webpack config file for ssr client bundle
 | |--webpack.ssr-server.config.js #a webpack config file for ssr server bundle
 | |--config.js # some config for the project
+| |--server.config.js # some config for the project server
 | |--nodemon.json # config for nodemon when dev
 ```
 
