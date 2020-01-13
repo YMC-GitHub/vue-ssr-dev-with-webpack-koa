@@ -3,6 +3,9 @@ const router = require('koa-router')()
 const LRU = require('lru-cache')
 const View = require('./View')
 
+if (process.env.NODE_ENV === undefined) {
+  process.env.NODE_ENV = 'production'
+}
 const isProd = process.env.NODE_ENV === 'production'
 
 const useMicroCache = process.env.MICRO_CACHE !== 'false'
