@@ -19,6 +19,7 @@
     "build:ssr": "rimraf dist && npm run build:ssr-client && npm run build:ssr-server",
     "build:ssr-client": "cross-env NODE_ENV=production webpack --config build/webpack.ssr-client.config.js --progress --hide-modules",
     "build:ssr-server": "cross-env NODE_ENV=production webpack --config build/webpack.ssr-server.config.js --progress --hide-modules",
+    "pro": "cross-env NODE_ENV=production node app/server.js",
     "pro:ssr": "cross-env NODE_ENV=production node app/server.js"
   },
   "engines": {

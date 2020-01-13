@@ -2,8 +2,11 @@ const fs = require('fs')
 const path = require('path')
 const LRU = require('lru-cache')
 
-const config = require('../build/config')
+const config = require('../build/server.config')
 
+if (process.env.NODE_ENV === undefined) {
+  process.env.NODE_ENV = 'production'
+}
 const isProd = process.env.NODE_ENV === 'production'
 
 const rootPath = path.resolve(__dirname, '../')
@@ -11,9 +14,11 @@ const rootPath = path.resolve(__dirname, '../')
 /* eslint-disable import/no-dynamic-require */
 const defaults = {
   template: isProd ? config.build.index : config.dev.index,
-  bundle: path.resolve(rootPath, 'dist/vue-ssr-server-bundle.json'),
-  clientManifest: path.resolve(rootPath, 'dist/vue-ssr-client-manifest.json')
+  bundle: isProd ? `${config.build.www}/vue-ssr-server-bundle.json` : `${config.dev.www}/vue-ssr-server-bundle.json`,
+  clientManifest: isProd ? `${config.build.www}/vue-ssr-client-manifest.json` : `${config.dev.www}/vue-ssr-client-manifest.json`
 }
+
+
 class View {
   constructor(app, options = {}) {
     this.template = options.template ||
@@ -45,7 +50,7 @@ class View {
         max: 1000,
         maxAge: 1000 * 60,
       }),
-      basedir: path.resolve(rootPath, './dist'),
+      basedir: isProd ? config.build.www : config.dev.www,
       runInNewContext: false
     }, options))
   }

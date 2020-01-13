@@ -35,7 +35,7 @@ const webpackClientConfig = merge(base, {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': isProd
         ? '"production"'
-        : JSON.stringify(process.env.NODE_ENV || 'development'),
+        : JSON.stringify(process.env.NODE_ENV || 'production'),
       'process.env.VUE_ENV': '"client"'
     }),
     new VueSSRClientPlugin()

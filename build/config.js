@@ -1,15 +1,14 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
-var path = require('path')
-
+const serverConfig = require('./server.config')
 module.exports = {
   build: {
     env: {
       NODE_ENV: '"production"'
     },
-    host: '0.0.0.0',
-    port: 80,
-    index: path.resolve(__dirname, '../dist/index.html'),
-    assetsRoot: path.resolve(__dirname, '../dist'),
+    host: serverConfig.build.host,
+    port: serverConfig.build.port,
+    index: serverConfig.build.index,
+    assetsRoot: serverConfig.build.www,
     assetsSubDirectory: 'static',
     assetsPublicPath: '',
     productionSourceMap: true,
@@ -30,9 +29,9 @@ module.exports = {
       NODE_ENV: '"development"',
       VUE_ENV: '"client"'
     },
-    host: 'localhost',
-    port: 8080,
-    index: path.resolve(__dirname, '../src/ssr-index.template.html'),
+    host: serverConfig.dev.host,
+    port: serverConfig.dev.port,
+    index: serverConfig.dev.index,
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/dist/',
