@@ -73,11 +73,19 @@ if (isProd) {
       children: true,
       minChunks: 3
     }),
-    //copy custom static assets
+    //copy html index file
     new CopyWebpackPlugin([
       {
         from: config.dev.index,
         to: config.build.index
+      }
+    ]),
+    //copy custom static assets
+    new CopyWebpackPlugin([
+      {
+        from: config.build.assetsSubDirectory.from,
+        to: config.build.assetsSubDirectory.to,
+        ignore: ['.*']
       }
     ]),
     // auto generate service worker
