@@ -83,7 +83,7 @@ if (isProd) {
     // auto generate service worker
     new SWPrecachePlugin({
       cacheId: 'maybeul',
-      filename: 'service-worker.js',
+      filename: utils.assetsPath('js/service-worker.js'),
       minify: true,
       dontCacheBustUrlsMatching: /./,
       staticFileGlobsIgnorePatterns: [/index\.html$/, /\.map$/, /\.json$/],
