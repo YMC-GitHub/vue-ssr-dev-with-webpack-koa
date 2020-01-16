@@ -85,10 +85,19 @@ module.exports = function (app) {
     }
   }
 
-  // Not matched /api uri
-  router.get(/^(?!\/api)(?:\/|$)/, isProd ? render : (ctx, next) => {
-    view.ready.then(() => render(ctx, next))
+  // handle all route to html index file for spa
+  router.get(/^(?!\/api)(?:\/|$)/, (ctx, next) => {
+    try {
+      if (isProd) {
+        render(ctx, next)
+      } else {
+        view.ready.then(() => render(ctx, next))
+      }
+    } catch (e) {
+      next()
+    }
   })
+
 
   return router
 }
