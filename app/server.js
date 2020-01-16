@@ -7,7 +7,7 @@ const logger = require('koa-logger')
 const bluebird = require('bluebird')
 const chalk = require('chalk')
 
-const config = require('../build/server.config.js')
+const config = require('../config/server.config')
 
 global.Promise = bluebird
 
