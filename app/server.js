@@ -40,14 +40,14 @@ app.use(compression({
   threshold: 2048,
   flush: require('zlib').Z_SYNC_FLUSH
 }))
-app.use(favicon(isProd ? `${config.build.static}/favicon.ico` : `${config.dev.static}/favicon.ico`, {
+app.use(favicon(isProd ? `${config.build.public}/favicon.ico` : `${config.dev.public}/favicon.ico`, {
   // set favicon cache max-age in milliseconds.
   maxAge: isProd ? 1 * 1000 * 60 * 60 * 60 * 24 : 1000
   // 1*1000*60*60*60*24
   // n*ms*s*m*h*d*
 }))
 // static serve for public dir
-app.use(serve(isProd ? config.build.static : config.dev.static, true))
+app.use(serve(isProd ? config.build.public : config.dev.public, true))
 // static serve for dist dir
 app.use(serve(isProd ? config.build.www : config.dev.www, true))
 
